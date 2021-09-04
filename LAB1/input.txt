@@ -4,5 +4,7 @@ size
 push 2
 size
 push 3
+clear
+pop
 size
 exit

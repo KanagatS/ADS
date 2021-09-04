@@ -17,13 +17,21 @@ int main()
 
         else if (str == "pop")
         {
-            cout << s.top() << endl;
-            s.pop();
+            if (s.size() >= 1)
+            {
+                cout << s.top() << endl;
+                s.pop();
+            }
+            else
+                cout << "error" << endl;
         }
 
         else if (str == "back")
         {
-            cout << s.top() << endl;
+            if (s.size() >= 1)
+                cout << s.top() << endl;
+            else
+                cout << "error" << endl;
         }
 
         else if (str == "size")
