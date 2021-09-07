@@ -24,7 +24,7 @@ int main()
     while (!s.empty())
     {
         cout << "Top element = " << s.top() << '\n';
-        s.pop();
+        //s.pop();
     }
 
     return 0;

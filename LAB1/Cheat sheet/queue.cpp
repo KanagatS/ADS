@@ -26,6 +26,6 @@ int main()
         cout << "Top element = " << q.front() << sep << q.back() << '\n';
         q.pop();
     }
-    q.
+    
     return 0;
 }
