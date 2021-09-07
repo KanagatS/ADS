@@ -1,1 +1,6 @@
-8 9 + 1 7 - *
+9 Ivanov
+10 Petrov
+11 Sidirov
+9 Grigoryev
+9 Sergeev
+10 Yakovlev
