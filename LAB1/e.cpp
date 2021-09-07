@@ -5,40 +5,49 @@ using namespace std;
 #define sep ' '
 #define ll long long
 
-queue<int> q1, q2;
+deque<int> d1, d2;
 int ans = 0;
 string winner = "";
 
 void make_action()
 {
-    if (q1.size() == 0)
+    if (d1.empty())
         winner = "second";
-    else if (q2.size() == 0)
+    else if (d2.empty())
         winner = "first";
 
-    if (q1.front() == 0 and q2.front() == 9)
+    else if (d1.front() == 0 and d2.front() == 9)
     {
-        q1.push(q2.front());
-        q2.pop();
+        d1.push_back(d1.front());
+        d1.push_back(d2.front());
+        d1.pop_front();
+        d2.pop_front();
         ans++;
     }
-    else if (q2.front() == 0 and q1.front() == 9)
+    else if (d2.front() == 0 and d1.front() == 9)
     {
-        q2.push(q1.front());
-        q1.pop();
+        d2.push_back(d1.front());
+        d2.push_back(d2.front());
+        d2.pop_front();
+        d1.pop_front();
         ans++;
     }
 
-    if (q1.front() > q2.front())
+    else if (d1.front() > d2.front())
     {
-        q1.push(q2.front());
-        q2.pop();
+        d1.push_back(d1.front());
+        d1.push_back(d2.front());
+        d1.pop_front();
+        d2.pop_front();
         ans++;
     }
-    else if (q2.front() > q1.front())
+
+    else if (d2.front() > d1.front())
     {
-        q2.push(q1.front());
-        q1.pop();
+        d2.push_back(d1.front());
+        d2.push_back(d2.front());
+        d2.pop_front();
+        d1.pop_front();
         ans++;
     }
 }
@@ -53,14 +62,14 @@ int main()
     {
         int temp;
         cin >> temp;
-        q1.push(temp);
+        d1.push_back(temp);
     }
 
     for (int i = 1; i <= 5; i++)
     {
         int temp;
         cin >> temp;
-        q2.push(temp);
+        d2.push_back(temp);
     }
 
     while (winner == "")
@@ -70,7 +79,6 @@ int main()
             cout << "botva";
             return 0;
         }
-
         make_action();
     }
 

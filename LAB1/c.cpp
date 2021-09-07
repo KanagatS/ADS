@@ -12,24 +12,42 @@ int main()
     cout.tie(NULL);
 
     string str;
-    queue<int> q;
+    deque<int> d;
     int n;
 
     while (cin >> str)
     {
-        if (str == "push")
+        if (str == "push_front")
         {
             cin >> n;
-            q.push(n);
+            d.push_front(n);
             cout << "ok" << endl;
         }
 
-        else if (str == "pop")
+        else if (str == "push_back")
         {
-            if (q.size() >= 1)
+            cin >> n;
+            d.push_back(n);
+            cout << "ok" << endl;
+        }
+
+        else if (str == "pop_front")
+        {
+            if (d.size() >= 1)
             {
-                cout << q.front() << endl;
-                q.pop();
+                cout << d.front() << endl;
+                d.pop_front();
+            }
+            else
+                cout << "error" << endl;
+        }
+
+        else if (str == "pop_back")
+        {
+            if (d.size() >= 1)
+            {
+                cout << d.back() << endl;
+                d.pop_back();
             }
             else
                 cout << "error" << endl;
@@ -37,21 +55,29 @@ int main()
 
         else if (str == "front")
         {
-            if (q.size() >= 1)
-                cout << q.front() << endl;
+            if (d.size() >= 1)
+                cout << d.front() << endl;
+            else
+                cout << "error" << endl;
+        }
+
+        else if (str == "back")
+        {
+            if (d.size() >= 1)
+                cout << d.back() << endl;
             else
                 cout << "error" << endl;
         }
 
         else if (str == "size")
         {
-            cout << q.size() << endl;
+            cout << d.size() << endl;
         }
 
         else if (str == "clear")
         {
-            while (!q.empty())
-                q.pop();
+            while (!d.empty())
+                d.pop_front();
 
             cout << "ok" << endl;
         }
