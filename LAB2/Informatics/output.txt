@@ -1,4 +1,3 @@
-he 2
-was 2
-i 1
-she 1
+1  I am a pupil.
+2  Bob went home.
+4  He is a pupil.

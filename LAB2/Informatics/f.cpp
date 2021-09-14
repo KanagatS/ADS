@@ -5,18 +5,43 @@
 
 using namespace std;
 
-vector<pair<int, string>> v;
+map<int, string> m;
+bool used[100] = {0};
+int max_key = 0;
+
+void numerate(map<int, string> m){
+    int index = 1;
+    for (int i = 1; i <= max_key; i++)
+    {
+        while(index <= m.size()){
+            if (m.find(i) != m.end()){
+                m[index] = m.find(i)->second;
+                index++;
+                break;
+            } else continue;
+        }
+    }
+    
+}
 
 void replace_str(int x, string s){
-
+    m[x] = s;
 }
 
 void delete_str(int x){
-
+    m.erase(x);
+    numerate(m);
 }
 
 void append_str(int x, string s){
-
+    if (!used[x]){
+        m[x] = s;
+        used[x] = 1;
+    } else{
+        m[x + 1] = m.find(x)->second;
+        m[x] = s;
+        used[x + 1] = 1;
+    }
 }
 
 int main()
@@ -45,6 +70,11 @@ int main()
             string s; getline(cin ,s);
             replace_str(x,s);
         }
+    }
+
+    for (auto &i : m){
+        if (i.first > max_key) max_key = i.first;
+        cout << i.second << '\n';
     }
 
     return 0;
