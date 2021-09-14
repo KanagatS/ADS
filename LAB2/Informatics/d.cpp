@@ -5,23 +5,22 @@
 
 using namespace std;
 
-bool cmp(pair<string, int> &a,
-         pair<string, int> &b)
+struct comp
 {
-    return a.second > b.second;
-}
+    template <typename T>
 
-void do_sort(map<string, int> m)
+    bool operator()(const T &l, const T &r)
+    {
+        if (l.second != r.second) return l.second > r.second;
+        else return l.first < r.first;
+    }
+};
+
+void map_sort(map<string, int> &M)
 {
-    vector<pair<string, int>> v;
+    set<pair<string, int>, comp> S(M.begin(), M.end());
 
-    for (auto &i : m)
-        v.push_back(i);
-
-    sort(v.begin(), v.end(), cmp);
-
-    for (auto &i : v)
-        cout << i.first << sep << i.second << '\n';
+    for (auto &i : S) cout << i.first << sep << i.second << '\n';
 }
 
 int main()
@@ -33,13 +32,12 @@ int main()
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    vector<string> v;
     string s;
     map<string, int> m;
-    
+
     while (cin >> s)
     {
-        for (ll int i = 0; i < s.size(); i++)
+        for (int i = 0; i < s.size(); i++)
         {
             s[i] = tolower(s[i]);
             if (s[i] == '.' || s[i] == ',' || s[i] == ':' ||
@@ -49,10 +47,10 @@ int main()
                 break;
             }
         }
-        m[s] += 1;
+        m[s]++;
     }
 
-    do_sort(m);
+    map_sort(m);
 
     return 0;
 }
