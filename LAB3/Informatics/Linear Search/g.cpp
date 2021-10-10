@@ -1,44 +1,41 @@
 #include <bits/stdc++.h>
-
-#define sep ' '
-#define ll long long
-
 using namespace std;
 
-bool found(vector<int> v, int x){
-    // BINARY SEARCH
+bool bin_search(int *a, int n, int x)
+{
+    int l = 0, r = n - 1;
+
+    while (l <= r)
+    {
+        int mid = (l + r) / 2;
+
+        if (a[mid] == x)
+            return true;
+
+        if (x < a[mid])
+            r = mid - 1;
+
+        else
+            l = mid + 1;
+    }
+
+    return false;
 }
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    int n, m;
+    cin >> n >> m;
+    int a[n];
 
-    int n, k;
-    cin >> n >> k;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
-    vector<int> v1, v2;
-
-    while (n--)
+    for (int i = 0; i < m; i++)
     {
-        int x;
-        cin >> x;
-        v1.push_back(x);
+        int t;
+        cin >> t;
+        cout << (bin_search(a, n, t) ? "YES\n" : "NO\n");
     }
-    
-    while (k--)
-    {
-        int x;
-        cin >> x;
-        v2.push_back(x);
-    }
-
-    for (auto &i : v2){
-        if (found(v1, i)) cout << "YES\n";
-        else cout << "NO\n";
-    }
-    
-
     return 0;
 }

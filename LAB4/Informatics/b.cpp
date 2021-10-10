@@ -11,8 +11,17 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n; cin >> n;
-    cout << ceil(log2(n));
+    int x, cnt = 0;
+
+    while (cin >> x)
+    {
+        if (x == 0)
+        {
+            cout << cnt;
+            return 0;
+        }
+        cnt++;
+    }
 
     return 0;
 }

@@ -5,8 +5,42 @@
 
 using namespace std;
 
-int first_and_last(vector<int> v, int x){
-    // FIRST AND LAST X IN ARRAY
+int left_bin_search(int *a, int n, int x)
+{
+    int l = 0, r = n - 1;
+
+    while (l < r)
+    {
+        int mid = (l + r) / 2;
+        if (x <= a[mid])
+            r = mid;
+        else
+            l = mid + 1;
+    }
+
+    if (a[l] == x)
+        return l + 1;
+    else
+        return 0;
+}
+
+int right_bin_search(int *a, int n, int x)
+{
+    int l = 0, r = n - 1;
+
+    while (l < r)
+    {
+        int mid = (l + r + 1) / 2;
+        if (a[mid] <= x)
+            l = mid;
+        else
+            r = mid - 1;
+    }
+
+    if (a[l] == x)
+        return l + 1;
+        
+    return 0;
 }
 
 int main()
@@ -15,28 +49,22 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
-    cin >> n >> k;
+    int n, m;
+    cin >> n >> m;
+    int a[n];
 
-    vector<int> v1, v2;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
-    while (n--)
+    for (int i = 0; i < m; ++i)
     {
-        int x;
-        cin >> x;
-        v1.push_back(x);
+        int t;
+        cin >> t;
+        if (left_bin_search(a, n, t))
+            cout << left_bin_search(a, n, t) << sep << right_bin_search(a, n, t) << endl;
+        else
+            cout << left_bin_search(a, n, t) << endl;
     }
-    
-    while (k--)
-    {
-        int x;
-        cin >> x;
-        v2.push_back(x);
-    }
-
-    for (auto &i : v2)
-        cout << first_and_last(v1, i);
-    
 
     return 0;
 }
