@@ -11,8 +11,7 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int t;
-    cin >> t;
+    int t; cin >> t;
     int a[t];
 
     for (int i = 0; i < t; i++)
@@ -26,20 +25,18 @@ int main()
         for (int j = 0; j < m; j++)
             cin >> s[i][j];
 
-    for (int elem = 0; elem < t; elem++)
-    {
+    for (int elem = 0; elem < t; elem++) {
         bool found = false;
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
-                if (a[elem] == s[i][j])
-                {
+                if (a[elem] == s[i][j]) {
                     found = true;
                     cout << i << ' ' << j << '\n';
                     break;
                 }
 
-        if (!found)
-            cout << -1 << '\n';
+        if (!found) cout << -1 << '\n';
 
         return 0;
     }
+}
